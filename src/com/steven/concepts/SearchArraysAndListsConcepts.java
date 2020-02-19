@@ -61,7 +61,7 @@ public class SearchArraysAndListsConcepts {
 		System.out.println("\n\n");
 		totals.put("searchLinkedListWithForEachLoop", searchLinkedListWithForEachLoop());
 
-		// this is so slow its not even worth it, run at your own impatience.  example time to run in nanoseconds =
+		// this is so slow its not even worth it, run at your own impatience.
 		//System.out.println("\n\n");
 		//totals.put("searchLinkedListWithForLoop", searchLinkedListWithForLoop());
 
@@ -316,6 +316,7 @@ public class SearchArraysAndListsConcepts {
 		System.out.println("Running Linked List with For Loop search for item... ");
 		long start = System.nanoTime();
 		for (int i = 0; i < linkedList.size(); i++) {
+			System.out.println(linkedList.get(i));
 			if (linkedList.get(i).equals(itemToFind)) {
 				System.out.println("Found item...");
 				break;
