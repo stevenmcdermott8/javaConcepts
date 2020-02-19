@@ -12,6 +12,7 @@ public class SearchArraysAndListsConcepts {
 	private static Integer itemToFind = 900_000;
 
 	public static void main(String[] args) {
+
 		Map<String, Long> totals = new HashMap<>();
 
 		totals.put("searchArrayListWithForLoop", searchArrayListWithForEachLoop());
