@@ -3,7 +3,7 @@ package com.steven.concepts.concurrency;
 /**
  * stevmc created on 2/21/20
  */
-public class SimpleMultithreading {
+public class SimpleThreadCreation1 {
 
 	public static void main(String[] args) throws InterruptedException {
 
