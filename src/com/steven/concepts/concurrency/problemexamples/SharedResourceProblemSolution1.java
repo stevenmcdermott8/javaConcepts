@@ -3,7 +3,11 @@ package com.steven.concepts.concurrency.problemexamples;
 /**
  * stevmc created on 2/24/20
  */
-public class SharedResourceProblem {
+public class SharedResourceProblemSolution1 {
+
+	// solution here is to add the synchronized key word to the increment and decrement operations, forcing java
+	// to lock to resource until the current thread accessing it is finished its operation before another thread
+	// can access the resource
 
 	public static void main(String[] args) throws InterruptedException {
 
@@ -11,19 +15,6 @@ public class SharedResourceProblem {
 		IncrementingThread incrementingThread = new IncrementingThread(inventoryCounter);
 		DecrementingThread decrementingThread = new DecrementingThread(inventoryCounter);
 
-		//		// run sequentially, this is safe but not really giving us anything extra we cannot do with one thread anyway
-		//		incrementingThread.start();
-		//		incrementingThread.join();
-
-		//		decrementingThread.start();
-		//		decrementingThread.join();
-		//
-		//		System.out.println("Inventory is " + inventoryCounter.getItems());
-
-		// expecting IllegalThreadStateException if above code is not commented out,
-		// otherwise, unpredictable value from threads sharing resource.
-		// use code above to see differing behavior
-		// the threads started below threads are not atomic operations
 		incrementingThread.start();
 		decrementingThread.start();
 
@@ -68,7 +59,7 @@ public class SharedResourceProblem {
 	private static class InventoryCounter {
 		private int items = 0;
 
-		public void increment() {
+		public synchronized void increment() {
 			// this is actually three operations
 			// 1. get current value of items
 			// 2. increment current value by 1
@@ -82,7 +73,7 @@ public class SharedResourceProblem {
 			items++;
 		}
 
-		public void decrement() {
+		public synchronized void decrement() {
 			items--;
 		}
 
