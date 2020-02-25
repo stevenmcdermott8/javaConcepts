@@ -1,4 +1,4 @@
-package com.steven.concepts.concurrency;
+package com.steven.concepts.concurrency.latency;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * stevmc created on 2/23/20
  */
-public class ConvertImage {
+public class ImproveLatencyExampleConvertImage {
 
 	private static final String SOURCE_FILE = "./resources/many-flowers.jpg";
 	private static final String DESTINATION_FILE_SINGLE_THREAD = "./out/many-flowers.jpg";
