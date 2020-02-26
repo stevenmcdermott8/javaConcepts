@@ -1,15 +1,13 @@
-package com.steven.concepts.concurrency.problemexamples;
+package com.steven.concepts.concurrency.race.condition.atomic.operations;
 
 /**
  * stevmc created on 2/24/20
  */
-public class SharedResourceProblemSolution2 {
+public class SharedResourceProblemSolution1 {
 
-	// solution here is to add the synchronized keyword to only a section of code, protection the logic wrapped within
-	// but not making the entire method synchronized
-	// allows for keeping the section of code needing thread safety/safe execution to be kept to a minimum
-	// also, different objects can be used for the locks, this will allow different blocks of code to be executed by
-	// different threads and be safe, keeping threads from being blocked when they dont need to be
+	// solution here is to add the synchronized key word to the increment and decrement operations, forcing java
+	// to lock to resource until the current thread accessing it is finished its operation before another thread
+	// can access the resource
 
 	public static void main(String[] args) throws InterruptedException {
 
@@ -60,9 +58,8 @@ public class SharedResourceProblemSolution2 {
 
 	private static class InventoryCounter {
 		private int items = 0;
-		Object lock = new Object();
 
-		public void increment() {
+		public synchronized void increment() {
 			// this is actually three operations
 			// 1. get current value of items
 			// 2. increment current value by 1
@@ -73,15 +70,11 @@ public class SharedResourceProblemSolution2 {
 			// currentValue <-- 0
 			// newValue <-- currentValue + 1 = 1
 			// items <-- ewValue = 1
-			synchronized (this.lock) {
-				items++;
-			}
+			items++;
 		}
 
-		public void decrement() {
-			synchronized (this.lock) {
-				items--;
-			}
+		public synchronized void decrement() {
+			items--;
 		}
 
 		public int getItems() {
